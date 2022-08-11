@@ -2,7 +2,7 @@
 Expected payload
 
 {
-    "recipients": "",
+    "user": "",
     "id": "%mc_ueid%",
     "severity": "%severity%",
     "status": "%status%",
@@ -30,8 +30,8 @@ if (request.parameters && request.parameters.recipients) {
 
 var payload = JSON.parse(request.body);
 
-if(payload.recipients){
-    recipients = payload.recipients;
+if(payload.user){
+    recipients = payload.user;
 }
 
 output['Recipients'] = recipients;
@@ -39,7 +39,7 @@ output['ID'] = payload.id ? payload.id : '';
 output['Severity'] = payload.severity ? payload.severity : '';
 output['Status'] = payload.status ? payload.status : '';
 output['Priority'] = payload.priority ? payload.priority : '';
-output['Reception Date'] = payload.reception_date ? payload.reception_date : '';
+output['Reception Date'] = payload.reception_date ? new Date(parseInt(payload.reception_date) * 1000) : '';
 output['Cell Name'] = payload.cell_name ? payload.cell_name : '';
 output['Host Address'] = payload.host_address ? payload.host_address : '';
 output['Client Address'] = payload.client_address ? payload.client_address : '';
